@@ -7,3 +7,6 @@ Matlab EchoPro code. This version corresponds to the code present in the zip fil
 - Excel files under `input_files`
 - All subfolders under `other_programs` and all Excel and other data files at the root level. These are not expected to be used directly in EchoPro. We'll add back individual m-script files as needed
 
+## Updated version
+
+The branch [main-brandon](https://github.com/uw-echospace/EchoPro_matlab/tree/main-brandon) contains a version of the Matlab EchoPro code that includes bug fixes @b-reyes implemented. See #2 for some details.
