@@ -9,4 +9,4 @@ Matlab EchoPro code. This version corresponds to the code present in the zip fil
 
 ## Updated version
 
-The branch [main-brandon](https://github.com/uw-echospace/EchoPro_matlab/tree/main-brandon) contains a version of the Matlab EchoPro code that includes bug fixes @b-reyes implemented. See #2 for some details.
+The branch [main-brandon](https://github.com/uw-echospace/EchoPro_matlab/tree/main-brandon) contains a version of the Matlab EchoPro code that includes bug fixes @b-reyes implemented. See https://github.com/uw-echospace/EchoPro_matlab/issues/2 for some details.
