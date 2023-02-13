@@ -6,7 +6,7 @@ function  CV = jolly_hampton_CV(para, data)
 % 
 
 year = para.survey_year;
-extrapolation = para.proc.extrapolation;  % 0 = no-extrapolation; 1 = extrapolation
+extrapolation = para.survey_year;  % 0 = no-extrapolation; 1 = extrapolation
 % stratification=2;      % 1 = Kolmogorov-Smirnov goodness-of-fit startification
 %                        % 2 = INPFC
 
@@ -171,6 +171,8 @@ else
 %     lon_ind=2;
 end
 
+s = RandStream('mlfg6331_64'); %% added by brandon 
+
 
 %% Jolly-Hampton algorithm
 for ii=1:nr   % loop through realizations
@@ -192,6 +194,7 @@ for ii=1:nr   % loop through realizations
             ind=find(diff(indx_i) == 0);
             indx_i(ind)=[];
         end
+%         indx_i = randsample(s,strata(i).n,ni(i),false);
         %     disp([indx_i(1) indx_i(end) length(ind) length(indx_i) strata(i).n])
         index_i=[index_i strata(i).ind(indx_i)];
         Lij=dist(strata(i).ind(indx_i));        % length of the jth transect in ith stratum

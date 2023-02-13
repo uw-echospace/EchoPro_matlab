@@ -278,13 +278,16 @@ for i=1:data.bio.n_hake_trawl
    data.bio.unique_aged_haul_no(i)=data.bio.hake_trawl_num(i);
    data.bio.unique_haul_no(i)=data.bio.hake_trawl_num(i);
    if ~isempty(ind2)
-      ind2_age=find(~isnan(data.bio.hake_length_weight_sex_age(ind2).age) == 1);
+%       ind2_age=find(~isnan(data.bio.hake_length_weight_sex_age(ind2).age) == 1); 
+      ind2_age=~isnan(data.bio.hake_length_weight_sex_age(ind2).age); % my way
       L2=data.bio.hake_length_weight_sex_age(ind2).length(ind2_age);
       if ~isempty(L2)
           L=[L L2];
-          Lmale2=data.bio.hake_length_weight_sex_age(ind2).length(data.bio.hake_length_weight_sex_age(ind2).sex(ind2_age) == 1);
+          Lmale2=data.bio.hake_length_weight_sex_age(ind2).length(ind2_age & data.bio.hake_length_weight_sex_age(ind2).sex == 1);  % my way
+%           Lmale2_chu=data.bio.hake_length_weight_sex_age(ind2).length(data.bio.hake_length_weight_sex_age(ind2).sex(ind2_age) == 1); 
           Lmale=[Lmale Lmale2];
-          Lfemale2=data.bio.hake_length_weight_sex_age(ind2).length(data.bio.hake_length_weight_sex_age(ind2).sex(ind2_age) == 2);
+          Lfemale2=data.bio.hake_length_weight_sex_age(ind2).length(ind2_age & data.bio.hake_length_weight_sex_age(ind2).sex == 2); % my way
+%           Lfemale2=data.bio.hake_length_weight_sex_age(ind2).length(data.bio.hake_length_weight_sex_age(ind2).sex(ind2_age) == 2);
           Lfemale=[Lfemale Lfemale2];         
       end
    else
@@ -294,6 +297,7 @@ for i=1:data.bio.n_hake_trawl
    end
    binned_L=hist(L,para.bio.hake_len_bin);
    data.bio.len_haul_ALL(:,i)= binned_L(:);
+
    binned_Lmale=hist(Lmale,para.bio.hake_len_bin);
    data.bio.len_haul_M(:,i)= binned_Lmale(:);
    binned_Lfemale=hist(Lfemale,para.bio.hake_len_bin);
@@ -316,9 +320,9 @@ for i=1:data.bio.n_hake_trawl
    end
    if ~isempty(Lunsexed2)
        binned_Lunsexed2=hist(Lunsexed2,para.bio.hake_len_bin);
-       data.bio.aged_len_haul_N(:,i)= binned_Lfemale2(:);
+%        data.bio.aged_len_haul_N(:,i)= binned_Lfemale2(:);
+       data.bio.aged_len_haul_N(:,i)= binned_Lunsexed2(:);
    end
-
 end
 
 % remove hauls with no age but only length values in biodata_specimen file
@@ -392,6 +396,7 @@ for ii = 1:n   % number of strata
                     break
                 end
             end
+            
             for k=1:length(data.bio.hake_length_sex)  % find the coresponding trawl in the stratum
                 if data.bio.strata(i).trawls(j) == data.bio.hake_length_sex(k).trawl_no
                     data.bio.strata(i).num_of_fish(j)=data.bio.hake_length_sex(k).n;
@@ -422,7 +427,6 @@ for ii = 1:n   % number of strata
             Wgt2j=[];
             Gender2j=[];
             Age2j=[];
-            
             %%%%% station #2 -> length - weight - gender - age
             for k=1:length(data.bio.hake_length_weight_sex_age)  % find the coresponding trawl in the stratum
                 if data.bio.strata(i).trawls(j) == data.bio.hake_length_weight_sex_age(k).trawl_no
@@ -698,7 +702,8 @@ for ii = 1:n   % number of strata
                 data.bio.strata(i).Len_wgt_key_F_ind(k)=length(L2kF_ind);
                 % ALL
                 ALL_nk=length(L2kM_ind)+length(L2kF_ind);
-                if length(ALL_nk) >= 5
+                if length(ALL_nk) >= 5 % chu's way
+%                 if ALL_nk >= 5
                     data.bio.strata(i).Len_wgt_key_ALL(k)=(data.bio.strata(i).Len_wgt_key_M(k)*length(L2kM_ind)+data.bio.strata(i).Len_wgt_key_F(k)*length(L2kF_ind))/ALL_nk;
                 else
                     data.bio.strata(i).Len_wgt_key_ALL(k)=data.bio.len_wgt_all.reg_w0*para.bio.hake_len_bin(k)^data.bio.len_wgt_all.reg_p;
@@ -729,7 +734,7 @@ if isfield(para, 'platform_name')
     end
 end
 %% modifiy data.bio.strata struct if it is empty due to removed trawls 
-if para.proc.transect_reduction_fraction ~= 0
+if para.proc.transect_reduction_fraction ~= 0 %== 16516541 %~= 0
     stratum_id_i = 1:max(stratum_id);
     for i = stratum_id_i
         if isempty(data.bio.strata(i).sig_b) | (para.proc.exclude_age1 == 1 & max(data.bio.strata(i).age2) < 2)

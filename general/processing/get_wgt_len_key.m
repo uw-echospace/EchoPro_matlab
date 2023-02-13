@@ -37,12 +37,12 @@ if para.acoust.TS_station_num == 1
     end
 else  % using two FSCS' sample stations
     %% proportion of samples at station #2
-    fac2_M=data.bio.strata(stratum_id).Len_Age_M_proportion;
-    fac2_F=data.bio.strata(stratum_id).Len_Age_F_proportion;
-    fac2_ALL=fac2_M+fac2_F;
+    fac2_M=data.bio.strata(stratum_id).Len_Age_M_proportion; % fraction of males
+    fac2_F=data.bio.strata(stratum_id).Len_Age_F_proportion; % fraction of females
+    fac2_ALL=fac2_M+fac2_F; % should unsexed be ib
     %% proportion of samples at station #1
     fac1_ALL=1-fac2_ALL;
-    fac1_M=fac1_ALL*sum(data.bio.strata(stratum_id).Len_key_Mn);
+    fac1_M=fac1_ALL*sum(data.bio.strata(stratum_id).Len_key_Mn); % this should be changed to Mx instead of Mn
     fac1_F=fac1_ALL*sum(data.bio.strata(stratum_id).Len_key_Fn);
     fac1_N=fac1_ALL*sum(data.bio.strata(stratum_id).Len_key_Nn);   % unsexed
     if fac1_M == 0 & fac1_F == 0 & fac2_M == 0 & fac2_F == 0

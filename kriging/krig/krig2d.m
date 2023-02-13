@@ -156,8 +156,10 @@ for i=1:nv    % loop through grid cell
             if xp(i) < xb(sort_ind) - R   % kriging grid x-axis < west_bound_x - R search radius  
 %                M2_unity(i)=exp(-abs(nanmean((r_sort(indx1)-Rtaper)))/Rtaper);
 %                M2_unity(i)=exp(-max(abs(r(indx1)-Rtaper))/Rtaper);
-               M2_unity=exp(-nanmean(r_sort(indx1))/R);
+%                M2_unity=exp(-nanmean(r_sort(indx1))/R);  % chu's way 
+               M2_unity=exp(-nanmean(r(indx1))/R); % my way
             end
+            M2_unity=exp(-nanmean(r(indx1))/R); % my way
         else
             indx1=indx_sort(indx);
         end
@@ -174,7 +176,7 @@ for i=1:nv    % loop through grid cell
         M20=variogrammodel3d(model,r(indx1),model_para);
     end
     switch mod_opt
-        case 1		% Objective mapping, follow Journel and Huijbregts, p. 307
+        case 1		% Objective mapping, follow Journel and Huijbregts, p. 307 this is simple kriging 
             M2=M20';
         case 2		% Ordinary Kriging, follow Journel and Huijbregts, p. 307
             M2=[M20 1 ]';

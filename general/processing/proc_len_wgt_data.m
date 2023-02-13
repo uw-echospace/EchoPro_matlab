@@ -34,7 +34,8 @@ data.bio.len_wgt_all.reg_w0M=w0M;      % w=w0*len^p;
 data.bio.len_wgt_all.reg_pM=pM(1);
 
 %% %% length-weight regression for all trawls for female
-indF=setxor(1:length(ind),indM);
+% indF=setxor(1:length(ind),indM);
+indF=find(data.bio.len_wgt_all.sex(ind) == 2);
 xF=log10(data.bio.len_wgt_all.len(ind(indF)));
 yF=log10(data.bio.len_wgt_all.wgt(ind(indF)));
 pF=polyfit(xF,yF,1);               % linear regression
@@ -46,7 +47,8 @@ data.bio.len_wgt_all.reg_pF=pF(1);
 %% total number of fish individuals at length
 data.bio.len_nM=hist(data.bio.len_wgt_all.len(ind(indM)),para.bio.hake_len_bin);
 data.bio.len_nF=hist(data.bio.len_wgt_all.len(ind(indF)),para.bio.hake_len_bin);
-data.bio.len_nALL=hist(data.bio.len_wgt_all.len,para.bio.hake_len_bin);
+% data.bio.len_nALL=hist(data.bio.len_wgt_all.len,para.bio.hake_len_bin);
+data.bio.len_nALL=hist(data.bio.len_wgt_all.len(ind),para.bio.hake_len_bin);
 
 %% length-key
 data.bio.len_key_M=data.bio.len_nM/sum(data.bio.len_nM);

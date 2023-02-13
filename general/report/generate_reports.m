@@ -16,17 +16,17 @@ function generate_reports(hdl)
         disp('write acoustically weighted un-kriged lenght-age-gender abundance tables ...')
         cmd1txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''A1:A1'');'];
         cmd1txtA=['writematrix([''Age (Male)''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''L1:L1'');'];
-        cmd1txtAx=['writematrix([''Un-aged''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''V2:V2'');'];
+        cmd1txtAx=['writematrix([''Un-aged''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''X2:X2'');'];
         %   cmd1txtLsum=['writematrix([''Age (Male)''],''' para.proc.output_filepath '/len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''L1:L1'');'];
-        cmd1=['writematrix(data.final.table.Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''A2:V42'');'];
+        cmd1=['writematrix(data.final.table.Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''A2:X42'');'];
         cmd2txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''A1:A1'');'];
         cmd2txtA=['writematrix([''Age (Female)''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''L1:L1'');'];
-        cmd2txtAx=['writematrix([''Un-aged''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''V2:V2'');'];
-        cmd2=['writematrix(data.final.table.Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''A2:V42'');'];
+        cmd2txtAx=['writematrix([''Un-aged''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''X2:X2'');'];
+        cmd2=['writematrix(data.final.table.Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''A2:X42'');'];
         cmd3txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''A1:A1'');'];
         cmd3txtA=['writematrix([''Age (All)''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''L1:L1'');'];
-        cmd3txtAx=['writematrix([''Un-aged''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''V2:V2'');'];
-        cmd3=['writematrix(data.final.table.Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''A2:V42'');'];
+        cmd3txtAx=['writematrix([''Un-aged''],''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''X2:X2'');'];
+        cmd3=['writematrix(data.final.table.Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''A2:X42'');'];
         
         %% Male
         eval(cmd1txtL)
@@ -34,12 +34,12 @@ function generate_reports(hdl)
         eval(cmd1txtAx)
         eval(cmd1)
         writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','A43');
-        writematrix(['Un-aged'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','V2');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','W2');
+        writematrix(['Un-aged'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','X2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','Y2');
         sum_over_lenM=sum(data.final.table.Len_Age_Matrix_AcoustM(2:end,2:end));
         writematrix(sum_over_lenM,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','B43');
         sum_over_ageM=sum(data.final.table.Len_Age_Matrix_AcoustM(2:end,2:end),2);
-        writematrix(sum_over_ageM,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','W3');
+        writematrix(sum_over_ageM,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','Y3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','A44');
         writematrix(sum(sum_over_lenM),[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','A45');
@@ -58,12 +58,12 @@ function generate_reports(hdl)
         eval(cmd2txtAx)
         eval(cmd2)
         writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','A43');
-        writematrix(['Un-aged'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','V2');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','W2');
+        writematrix(['Un-aged'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','X2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','Y2');
         sum_over_lenF=sum(data.final.table.Len_Age_Matrix_AcoustF(2:end,2:end));
         writematrix(sum_over_lenF,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','B43');
         sum_over_ageF=sum(data.final.table.Len_Age_Matrix_AcoustF(2:end,2:end),2);
-        writematrix(sum_over_ageF,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','W3');
+        writematrix(sum_over_ageF,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','Y3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','A44');
         writematrix(sum(sum_over_lenF),[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','A45');
@@ -82,12 +82,12 @@ function generate_reports(hdl)
         eval(cmd3txtAx)
         eval(cmd3)
         writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','A43');
-        writematrix(['Un-aged'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','V2');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','W2');
+        writematrix(['Un-aged'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','X2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','Y2');
         sum_over_len=sum(data.final.table.Len_Age_Matrix_AcoustALL(2:end,2:end));
         writematrix(sum_over_len,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','B43');
         sum_over_age=sum(data.final.table.Len_Age_Matrix_AcoustALL(2:end,2:end),2);
-        writematrix(sum_over_age,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','W3');
+        writematrix(sum_over_age,[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','Y3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','A44');
         writematrix(sum(sum_over_len),[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/un-kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','A45');
@@ -107,25 +107,25 @@ function generate_reports(hdl)
         disp('write acoustically weighted kriged lenght-age-gender abundance tables ...')
         cmd1txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''A1:A1'');'];
         cmd1txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''L1:L1'');'];
-        cmd1=['writematrix(data.final.table.kriged_Num_Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''A2:V42'');'];
+        cmd1=['writematrix(data.final.table.kriged_Num_Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',1,''Range'',''A2:X42'');'];
         cmd2txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''A1:A1'');'];
         cmd2txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''L1:L1'');'];
-        cmd2=['writematrix(data.final.table.kriged_Num_Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''A2:V42'');'];
+        cmd2=['writematrix(data.final.table.kriged_Num_Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',2,''Range'',''A2:X42'');'];
         cmd3txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''A1:A1'');'];
         cmd3txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''L1:L1'');'];
-        cmd3=['writematrix(data.final.table.kriged_Num_Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''A2:V42'');'];
+        cmd3=['writematrix(data.final.table.kriged_Num_Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'',''Sheet'',3,''Range'',''A2:X42'');'];
         
         %% Male
         eval(cmd1txtL)
         eval(cmd1txtA)
         eval(cmd1)
         writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','A43');
-        writematrix(['Un-aged'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','V2');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','W2');
+        writematrix(['Un-aged'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','X2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','Y2');
         sum_over_lenM=sum(data.final.table.kriged_Num_Len_Age_Matrix_AcoustM(2:end,2:end));
         writematrix(sum_over_lenM,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','B43');
         sum_over_ageM=sum(data.final.table.kriged_Num_Len_Age_Matrix_AcoustM(2:end,2:end),2);
-        writematrix(sum_over_ageM,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','W3');
+        writematrix(sum_over_ageM,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','Y3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','A44');
         writematrix(sum(sum_over_lenM),[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',1,'Range','A45');
@@ -139,12 +139,12 @@ function generate_reports(hdl)
         eval(cmd2txtA)
         eval(cmd2)
         writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','A43');
-        writematrix(['Un-aged'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','V2');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','W2');
+        writematrix(['Un-aged'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','X2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','Y2');
         sum_over_lenF=sum(data.final.table.kriged_Num_Len_Age_Matrix_AcoustF(2:end,2:end));
         writematrix(sum_over_lenF,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','B43');
         sum_over_ageF=sum(data.final.table.kriged_Num_Len_Age_Matrix_AcoustF(2:end,2:end),2);
-        writematrix(sum_over_ageF,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','W3');
+        writematrix(sum_over_ageF,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','Y3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','A44');
         writematrix(sum(sum_over_lenF),[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',2,'Range','A45');
@@ -158,12 +158,12 @@ function generate_reports(hdl)
         eval(cmd3txtA)
         eval(cmd3)
         writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','A43');
-        writematrix(['un-aged'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','V2');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','W2');
+        writematrix(['un-aged'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','X2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','Y2');
         sum_over_len=sum(data.final.table.kriged_Num_Len_Age_Matrix_AcoustALL(2:end,2:end));
         writematrix(sum_over_len,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','B43');
         sum_over_age=sum(data.final.table.kriged_Num_Len_Age_Matrix_AcoustALL(2:end,2:end),2);
-        writematrix(sum_over_age,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','W3');
+        writematrix(sum_over_age,[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','Y3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','A44');
         writematrix(sum(sum_over_len),[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/kriged_len_age_abundance_table.xlsx'],'Sheet',3,'Range','A45');
@@ -178,24 +178,24 @@ function generate_reports(hdl)
         disp('write acoustically weighted un-kriged lenght-age-gender biomass tables ...')
         cmd1txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''A1:A1'');'];
         cmd1txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''L1:L1'');'];
-        cmd1=['writematrix(data.final.table.Wgt_Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''A2:U42'');'];
+        cmd1=['writematrix(data.final.table.Wgt_Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''A2:W42'');'];
         cmd2txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''A1:A1'');'];
         cmd2txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''L1:L1'');'];
-        cmd2=['writematrix(data.final.table.Wgt_Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''A2:U42'');'];
+        cmd2=['writematrix(data.final.table.Wgt_Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''A2:W42'');'];
         cmd3txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''A1:A1'');'];
         cmd3txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''L1:L1'');'];
-        cmd3=['writematrix(data.final.table.Wgt_Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''A2:U42'');'];
+        cmd3=['writematrix(data.final.table.Wgt_Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''A2:W42'');'];
         
          %% Male
         eval(cmd1txtL)
         eval(cmd1txtA)
         eval(cmd1)
         writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','A43');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','V2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','X2');
         sum_over_lenM=sum(data.final.table.Wgt_Len_Age_Matrix_AcoustM(2:end,2:end));
         writematrix(sum_over_lenM,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','B43');
         sum_over_ageM=sum(data.final.table.Wgt_Len_Age_Matrix_AcoustM(2:end,2:end),2);
-        writematrix(sum_over_ageM,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','V3');
+        writematrix(sum_over_ageM,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','X3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','A44');
         writematrix(sum(sum_over_lenM),[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','A45');
@@ -209,11 +209,11 @@ function generate_reports(hdl)
         eval(cmd2txtA)
         eval(cmd2)
         writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','A43');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','V2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','X2');
         sum_over_lenF=sum(data.final.table.Wgt_Len_Age_Matrix_AcoustF(2:end,2:end));
         writematrix(sum_over_lenF,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','B43');
         sum_over_ageF=sum(data.final.table.Wgt_Len_Age_Matrix_AcoustF(2:end,2:end),2);
-        writematrix(sum_over_ageF,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','V3');
+        writematrix(sum_over_ageF,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','X3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','A44');
         writematrix(sum(sum_over_lenF),[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','A45');
@@ -227,11 +227,11 @@ function generate_reports(hdl)
         eval(cmd3txtA)
         eval(cmd3)
         writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','A43');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','V2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','X2');
         sum_over_len=sum(data.final.table.Wgt_Len_Age_Matrix_AcoustALL(2:end,2:end));
         writematrix(sum_over_len,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','B43');
         sum_over_age=sum(data.final.table.Wgt_Len_Age_Matrix_AcoustALL(2:end,2:end),2);
-        writematrix(sum_over_age,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','V3');
+        writematrix(sum_over_age,[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','X3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','A44');
         writematrix(sum(sum_over_len),[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/un-kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','A45');
@@ -248,24 +248,24 @@ function generate_reports(hdl)
         disp('write acoustically weighted kriged lenght-age-gender biomass tables ...')
         cmd1txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''A1:A1'');'];
         cmd1txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''L1:L1'');'];
-        cmd1=['writematrix(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''A2:U42'');'];
+        cmd1=['writematrix(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustM, ''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',1,''Range'',''A2:W42'');'];
         cmd2txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''A1:A1'');'];
         cmd2txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''L1:L1'');'];
-        cmd2=['writematrix(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''A2:U42'');'];
+        cmd2=['writematrix(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustF, ''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',2,''Range'',''A2:W42'');'];
         cmd3txtL=['writematrix([''Length (cm)''],''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''A1:A1'');'];
         cmd3txtA=['writematrix([''Age ''],''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''L1:L1'');'];
-        cmd3=['writematrix(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''A2:U42'');'];
+        cmd3=['writematrix(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustALL, ''' para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'',''Sheet'',3,''Range'',''A2:W42'');'];
         
         %% Male
         eval(cmd1txtL)
         eval(cmd1txtA)
         eval(cmd1)
         writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','A43');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','V2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','X2');
         sum_over_lenM=sum(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustM(2:end,2:end));
         writematrix(sum_over_lenM,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','B43');
         sum_over_ageM=sum(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustM(2:end,2:end),2);
-        writematrix(sum_over_ageM,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','V3');
+        writematrix(sum_over_ageM,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','X3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','A44');
         writematrix(sum(sum_over_lenM),[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',1,'Range','A45');
@@ -279,11 +279,11 @@ function generate_reports(hdl)
         eval(cmd2txtA)
         eval(cmd2)
         writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','A43');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','V2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','X2');
         sum_over_lenF=sum(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustF(2:end,2:end));
         writematrix(sum_over_lenF,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','B43');
         sum_over_ageF=sum(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustF(2:end,2:end),2);
-        writematrix(sum_over_ageF,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','V3');
+        writematrix(sum_over_ageF,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','X3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','A44');
         writematrix(sum(sum_over_lenF),[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',2,'Range','A45');
@@ -297,11 +297,11 @@ function generate_reports(hdl)
         eval(cmd3txtA)
         eval(cmd3)
         writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','A43');
-        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','V2');
+        writematrix(['Subtotal'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','X2');
         sum_over_len=sum(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustALL(2:end,2:end));
         writematrix(sum_over_len,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','B43');
         sum_over_age=sum(data.final.table.kriged_Wgt_Len_Age_Matrix_AcoustALL(2:end,2:end),2);
-        writematrix(sum_over_age,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','V3');
+        writematrix(sum_over_age,[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','X3');
         writematrix(['Total (age1+)'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','A44');
         writematrix(sum(sum_over_len),[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','B44');
         writematrix(['Total (age2+)'],[para.proc.output_filepath '/kriged_len_age_biomass_table.xlsx'],'Sheet',3,'Range','A45');

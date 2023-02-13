@@ -14,7 +14,7 @@ clear persistent;
 
 global data para hdl        %% global variables
 
-home_dir=pwd;               %% set home directory
+home_dir= pwd;               %% set home directory
 ind=find(home_dir == ':');
 para.drive=home_dir(1:ind);
 machine_bits=64;            %% bits of the computer
@@ -26,7 +26,8 @@ addpath(genpath(home_dir))
 % para.data_root_dir='F:\Historical Summary (for Kriging)\';
 % para.data_root_dir='F:\Backup Laptop 8283 -2016-09-23\Projects\EchoPro\Historical Summary (for Kriging)\';
 % para.data_root_dir='N:\Survey.Acoustics\Survey Time Series Analysis\Historical Summary (for Kriging)\';
-para.data_root_dir='/usr/mayorgadat/workmain/acoustics/2021-NWFSC-EchoPro-HakeIGP/EchoPro/EchoProGUI_reorg/inputs/';
+% para.data_root_dir='/usr/mayorgadat/workmain/acoustics/2021-NWFSC-EchoPro-HakeIGP/EchoPro/EchoProGUI_reorg/inputs/';
+para.data_root_dir='/Users/brandonreyes/UW_work/EchoPro_work/UW_EchoProMatlab_Repackaged/inputs/';
 
 if machine_bits == 64
     cmd0=['addpath(genpath(''' home_dir '\gui_windows64''))'];

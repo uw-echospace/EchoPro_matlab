@@ -98,6 +98,7 @@ para.proc.stratification_index=1;               % index for the chosen stratific
                                                 % 7 = mix-proportion, rather than 85% & 20% hake/hake-mix rules
                                                 % 10 = one stratum for the whole survey 
 end
+
 para.proc.start_transect=1;                     % start transect number
 para.proc.end_transect=200;                     % end transect number
 para.proc.transect_offset=0;                    % transect offset added to the CAN transect when merge the uS and CAN data

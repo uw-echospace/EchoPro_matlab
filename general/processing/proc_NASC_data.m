@@ -334,9 +334,7 @@ while para.proc.bootstrap.cnt < para.proc.bootstrap.limit
             end
             age2y_num_proportion=1-age1_num_proportion;
             age2y_nasc_proportion=1-age1_nasc_proportion;
-            age2y_wgt_proportion=1-age1_wgt_proportion;
-            
-            
+            age2y_wgt_proportion=1-age1_wgt_proportion;       
             if ~isnan(ntk(ii))
                 %% proportion the numbers+
                 %% Length station (#1)
@@ -384,7 +382,10 @@ while para.proc.bootstrap.cnt < para.proc.bootstrap.limit
             Wgt_male_int(ii)=nansum(ntk_male(ii)*len_wgt_M);                                % in kg
             Wgt_female_int(ii)=nansum(ntk_female(ii)*len_wgt_F);                            % in kg
             Wgt_unsexed_int(ii)=nansum((ntk(ii)-ntk_male(ii)-ntk_female(ii))*len_wgt_ALL);  % in kg for unsexed hake
-            Wgt_ALL_int(ii)=Wgt_male_int(ii)+Wgt_female_int(ii)+Wgt_unsexed_int(ii);
+            Wgt_ALL_int(ii)=Wgt_male_int(ii)+Wgt_female_int(ii)+Wgt_unsexed_int(ii); 
+            Wgt_ALL_int_pure(ii) = Wgt_ALL_int(ii);
+            ntk_pure(ii) = ntk(ii);
+            NASC_int_pure(ii) = NASC_int(ii);
             len_wgt_ALL_ii(ii)=len_wgt_ALL;
             
             if ~isnan(ntk(ii))
@@ -420,6 +421,8 @@ while para.proc.bootstrap.cnt < para.proc.bootstrap.limit
             nWgt_female_int(ii)=nntk_female(ii)*len_wgt_F;                              % in kg
             nWgt_unsexed_int(ii)=(nntk(ii)-nntk_male(ii)-nntk_female(ii))*len_wgt_ALL;  % in kg for unsexed hake
             nWgt_ALL_int(ii)=nWgt_male_int(ii)+nWgt_female_int(ii)+nWgt_unsexed_int(ii);
+            nWgt_ALL_int_pure(ii) = nWgt_ALL_int(ii);
+            nntk_pure(ii) = nntk(ii);
             
 %             if ii == 2213
 %                 disp([ii age2y_nasc_proportion])
@@ -466,7 +469,7 @@ while para.proc.bootstrap.cnt < para.proc.bootstrap.limit
 %         end
         
     end  % end of interval loop
-    
+
     %% construct un-kriged VL-interval based NASC-Biomass table
     if str2num(char(para.survey_year)) < 2003
         %% Columns   1-9:    'Transect'    'Region no.'    'VL_start'    'VL_end'     'Lat'      'Lon'      'stratum'      'Depth'      'NASC'

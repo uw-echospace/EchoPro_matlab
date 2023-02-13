@@ -21,7 +21,7 @@ function generate_aged_reports(hdl)
     if hdl == 1
         n=length(data.bio.strata);
         age_str={mat2cell(1:length(para.bio.hake_age_bin),1,length(para.bio.hake_age_bin))};
-        age_str={'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20'};
+        age_str={'1','2','3','4','5','6','7','8','9','10','11','12','13','14','15','16','17','18','19','20', '21', '22'};
         for i=1:n
             if isempty(data.bio.strata) ~= 1 & isempty(data.bio.strata(i).Len_Age_key_wgt_Mn) ~= 1
                 if sum(sum(data.bio.strata(i).Len_Age_key_wgt_Mn(:,age_ind))) == 0
