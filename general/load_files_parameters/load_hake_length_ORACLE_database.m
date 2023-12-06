@@ -20,7 +20,7 @@ ind=find(d(:,4) == species_code_id);
 d=d(ind,:);
 d(:,3)=d(:,3)+haul_num_offset;
 
-if para.proc. exclude_age1 == 1
+if para.proc.exclude_age1 == 1
     %% exclude age-1 hauls
     [intersect_hauls,IA,IB]= intersect(d(:,3),para.proc.age1_haul);
     if ~isempty(intersect_hauls)

@@ -245,6 +245,7 @@ function pb_start_Callback(hObject, eventdata, handles)
 global hdl data para
 hdl.proc=handles;
 para.proc.bootstrap.cnt=0;
+
 proc_acoustic_data
 return
 
@@ -392,7 +393,9 @@ function radio_proc_include_age1_Callback(hObject, eventdata, handles)
 
 % Hint: get(hObject,'Value') returns toggle state of radio_proc_include_age1
 global hdl para
-para.proc.exclude_age1 = 1 - get(hObject, 'value');          % 0 = include age 1 hake,   1 = exclude age 1 hake
+
+para.proc.exclude_age1 = 1 - get(hObject, 'value');   % 0 = include age 1 hake,   1 = exclude age 1 hake
+disp(para.proc.exclude_age1)
 if para.proc.exclude_age1 == 1
     para.acoust.filename.processed_data=para.acoust.filename.processed_data_age2;
     para.bio_acoust.filename.Transect_region_haul=para.bio_acoust.filename.Transect_region_haul_age2;

@@ -25,8 +25,10 @@ data.bio.trawl = [];
 data.bio.gear = [];
 
 %% updated gear and possible haul numbers
-for i = 1:length(TX_selected)
-    for j = j0_g:length(data0.bio.gear.trawl_no)
+% for i = 1:length(TX_selected)
+for j = j0_g:length(data0.bio.gear.trawl_no)  % changed by brandon
+%     for j = j0_g:length(data0.bio.gear.trawl_no)
+    for i = 1:length(TX_selected)  % changed by brandon
         if data0.bio.gear.transect(j) == TX_selected(i)
             data_bio.gear.trawl_no(cnt_g) = data0.bio.gear.trawl_no(j);
             data_bio.gear.transect(cnt_g) = data0.bio.gear.transect(j);
@@ -37,7 +39,7 @@ for i = 1:length(TX_selected)
             data_bio.gear.ave_netopen(cnt_g) = data0.bio.gear.ave_netopen(j);
             %% get the trawl_no
             TX_selected_trawl_no_indx(cnt_g) = data_bio.gear.trawl_no(cnt_g);
-            j0_g = j + 1;
+            j0_g = j + 1;  
             cnt_g = cnt_g + 1;
         end
     end
@@ -47,10 +49,12 @@ data.tmp.selected_TX = TX_selected;
 data.tmp.TX_selected_trawl_no_indx = TX_selected_trawl_no_indx;
 
 %% find hake trawls
-for i = 1:length(TX_selected_trawl_no_indx)
+% for i = 1:length(TX_selected_trawl_no_indx)
+for j = j0_ls:length(data0.bio.hake_length_sex)  % changed by brandon
 %% updated hake_length_sex
     found_trawl = 0;
-    for j = j0_ls:length(data0.bio.hake_length_sex)        
+%     for j = j0_ls:length(data0.bio.hake_length_sex)  
+    for i = 1:length(TX_selected_trawl_no_indx)  % changed by brandon
         if data0.bio.hake_length_sex(j).trawl_no == TX_selected_trawl_no_indx(i)
             data_bio.hake_length_sex = data0.bio.hake_length_sex(j);
             j0_ls = j + 1;
@@ -69,10 +73,14 @@ for i = 1:length(TX_selected_trawl_no_indx)
     else
 %         fprintf('cnt = %d\t len_sex -> no trawl is found on transect: %d ... \n', cnt_ls, TX_selected_trawl_no_indx(i));
     end
+end % changed by brandon
+
+for j = j0_lwsa:length(data0.bio.hake_length_weight_sex_age) % changed by brandon
     
 %% updated hake_length_weight_sex_age
     found_trawl = 0;
-    for j = j0_lwsa:length(data0.bio.hake_length_weight_sex_age)
+%     for j = j0_lwsa:length(data0.bio.hake_length_weight_sex_age)
+    for i = 1:length(TX_selected_trawl_no_indx)  % changed by brandon
         if data0.bio.hake_length_weight_sex_age(j).trawl_no == TX_selected_trawl_no_indx(i)
             data_bio.hake_length_weight_sex_age = data0.bio.hake_length_weight_sex_age(j);
             j0_lwsa = j + 1;
@@ -91,10 +99,13 @@ for i = 1:length(TX_selected_trawl_no_indx)
     else
 %         fprintf('cnt = %d\t len_wgt_sex_age -> no trawl is found on transect: %d ... \n', cnt_lwsa, TX_selected_trawl_no_indx(i));
     end
-    
+end  % changed by brandon
+
+for j = j0_c:length(data0.bio.catch)  % changed by brandon
 %% updated catch
     found_trawl = 0;
-    for j = j0_c:length(data0.bio.catch)
+%     for j = j0_c:length(data0.bio.catch)
+    for i = 1:length(TX_selected_trawl_no_indx)  % changed by brandon
         if data0.bio.catch(j).trawl_no == TX_selected_trawl_no_indx(i)
             data_bio.catch = data0.bio.catch(j);
             j0_c = j + 1;
@@ -113,9 +124,12 @@ for i = 1:length(TX_selected_trawl_no_indx)
     else
 %         fprintf('cnt = %d\t catch -> no trawl is found on transect: %d ... \n', cnt_c, TX_selected_trawl_no_indx(i));
     end
-    
+end % changed by brandon
+
+for j = j0_t:length(data0.bio.trawl.trawl_no)  % changed by brandon
 %% updated trawl
-    for j = j0_t:length(data0.bio.trawl.trawl_no)
+%     for j = j0_t:length(data0.bio.trawl.trawl_no)
+    for i = 1:length(TX_selected_trawl_no_indx)  % changed by brandon
         if data0.bio.trawl.trawl_no(j) == TX_selected_trawl_no_indx(i)
             data_bio.trawl.trawl_no(cnt_t) = TX_selected_trawl_no_indx(i);
             data_bio.trawl.haultype(cnt_t) = data0.bio.trawl.haultype(j);

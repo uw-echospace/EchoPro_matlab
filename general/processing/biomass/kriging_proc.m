@@ -267,19 +267,19 @@ else %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% no kriging loop %%%%%%%%%%
             cmap=colormap('jet'); colormap(cmap)
             hold on
             i0=1;
-            for i=1:n
-                if isempty(indx_nan) | min(abs(indx_nan-i)) ~= 0
-                    if clr(i) <= 0
-                        m_plot(x(i),y(i),'o','color',[1 1 1],'markersize',2);
-                    else
-                        m_plot(x(i),y(i),'o','color',cmap(clr(i),:),'markersize',2);
-                    end
-                    if i == i0;hold on,end
-                else
-                    i0=i0+1;
-                end
-
-            end
+%             for i=1:n
+%                 if isempty(indx_nan) | min(abs(indx_nan-i)) ~= 0
+%                     if clr(i) <= 0
+%                         m_plot(x(i),y(i),'o','color',[1 1 1],'markersize',2);
+%                     else
+%                         m_plot(x(i),y(i),'o','color',cmap(clr(i),:),'markersize',2);
+%                     end
+%                     if i == i0;hold on,end
+%                 else
+%                     i0=i0+1;
+%                 end
+% 
+%             end
             xlabel('LONGITUDE','fontsize',16,'fontweight','bold')
             ylabel('LATITUDE','fontsize',16,'fontweight','bold')
             title(['BIOMASS DENSITY (' para.survey_year ' Hake Survey)'],'fontsize',14,'fontweight','bold');
@@ -373,14 +373,14 @@ else %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% no kriging loop %%%%%%%%%%
             m_plot(data.out.krig.lon,data.out.krig.lat,'.','markersize',1)
             i0=1;
             ncv=length(CV_var);
-            for i=1:ncv
-                if isempty(indx_nan) | min(abs(indx_nan-i)) ~= 0
-                    m_plot(data.out.krig.lon(i),data.out.krig.lat(i),'.','color',cmap(clr(i),:),'markersize',2);
-                    if i == i0;hold on,end
-                else
-                    i0=i0+1;
-                end
-            end
+%             for i=1:ncv
+%                 if isempty(indx_nan) | min(abs(indx_nan-i)) ~= 0
+%                     m_plot(data.out.krig.lon(i),data.out.krig.lat(i),'.','color',cmap(clr(i),:),'markersize',2);
+%                     if i == i0;hold on,end
+%                 else
+%                     i0=i0+1;
+%                 end
+%             end
             xlabel('LONGITUDE','fontsize',16,'fontweight','bold')
             ylabel('LATITUDE','fontsize',16,'fontweight','bold')
             title(['COEFFICIENT OF VARIANCE (' para.survey_year ' Hake Survey)'],'fontsize',14,'fontweight','bold');
@@ -405,10 +405,10 @@ else %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% no kriging loop %%%%%%%%%%
         end
         
  %       data.final.table.kriged_biomass=[y x var.*Area*1e-6 CV_var(ind_valid)];
-        data.final.table.kriged_biomass=[y x var.*Area*1e-6 CV_var SD_var];
-        data.final.table.kriged_biomass_description={'Latitude','Longitude','Biomass (mt), krig_CV', 'krig_SD'};
+        data.final.table.kriged_biomass=[y x var.*Area*1e-6 CV_var]; % SD_var];
+        data.final.table.kriged_biomass_description={'Latitude','Longitude','Biomass (mt), krig_CV'}; %, 'krig_SD'};
         data.final.table.kriged_biomass0(:,12)=CV_var;
-        data.final.table.kriged_biomass0(:,13)=SD_var;
+%         data.final.table.kriged_biomass0(:,13)=SD_var;
         fprintf(' -------------------------------------------------------------------\n');
         
         if para.proc.bootstrap.cnt <= para.proc.bootstrap.limit

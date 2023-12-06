@@ -5,7 +5,6 @@ function [Tnew, accu_ind]=get_resampled_sonar_data(data,para,VL_BiomassInt0)
 %% Last Modification:       4/4/2013
 %% Modification:       03/10/2020   transect reduction will include trawl reduction
 
-
 %% original transects
 T0=VL_BiomassInt0(:,1);
 T=sort(unique(T0),'ascend');
@@ -90,12 +89,17 @@ else                                        % randomized transects
        Tnew=[Tnew; Tindx_ii(:)];
    end
 end
+
+% added by brandon to investigate transect selection
+% Tnew = [1,5,6,9,15,18,28,30,35,38,41,42,46,47,52,55,57,60,61,63,65,66,67,68,69,70,75,77,79,94,97,98,100,105,117,119,121,135,140,59,109,22,27,78,92]'
+
 n1=length(Tnew);
 accu_ind=[];
 for i=1:n1
     ind=find(T0 == Tnew(i));
     accu_ind=[accu_ind; ind];
 end
+para.all_selected_transects = [para.all_selected_transects; Tnew'];
 fprintf('number of transects = %d out of %d\n',n1,n0);
 VL_BiomassInt=VL_BiomassInt0(accu_ind,:);
 return

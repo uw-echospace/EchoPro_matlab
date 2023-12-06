@@ -110,28 +110,33 @@ for j=1:ndir						% orientation loop
                 %       disp([i nd-i length(ang_indx) min(ang_z) max(ang_z)])
             end
             data.out.vario.len(j,i)=length(ang_indx);
-            xi=x(ang_indx);yi=y(ang_indx);zi=z(ang_indx);var_i=vr(ang_indx);
+%             xi=x(ang_indx);yi=y(ang_indx);zi=z(ang_indx);var_i=vr(ang_indx); % chu's line 
+            x2=x(i+1:nd);y2=y(i+1:nd);z2=z(i+1:nd);vr2=vr(i+1:nd); % my line 
+            xi=x2(ang_indx);yi=y2(ang_indx);zi=z2(ang_indx);var_i=vr2(ang_indx); % my line 
+%             xi=x(i+ang_indx);yi=y(i+ang_indx);zi=z(i+ang_indx);var_i=vr(i+ang_indx); % chu's change
+
             %plot(x(i+1:n),y(i+1:n),'.k',x(ang_indx),y(ang_indx),'or');pause
             ni=length(xi);
             dxi=x(i)-xi;			% dxi=dx(ang_indx-1)
             dyi=y(i)-yi;
             dzi=z(i)-zi;
-            d=sqrt(dxi.*dxi+dyi.*dyi+dzi.*dzi);
+            d=sqrt(dxi.*dxi+dyi.*dyi+dzi.*dzi);  % chu's line
             [dsort,indx_sort]=sort(d);
             var_sort=var_i(indx_sort);
             dindx=round(dsort/res)+1;
             k_acc=0;								% accumulated k index
             for k=1:nlag-1
-                indxk=find(dindx(k_acc+1:ni) == k) + k_acc ;
+                indxk=find(dindx(k_acc+1:ni) == k) + k_acc; % chu's line look at k=9 and i=1
+%                 indxk=find((lag(k) <= dsort) & (dsort < lag(k+1))); % my line
                 nk=length(indxk);
                 if nk > 0
                     % tail portion
                     cnt(k)=cnt(k)+nk;
                     k_acc=k_acc+nk;
-                    var_dif= vr(i) - var_sort(indxk);
+                    var_dif= vr(i) - var_sort(indxk); % this is the difference in the semi-variogram calc
                     var_sum(k)=var_sum(k)+sum(var_sort(indxk));
                     var2_sum(k)=var2_sum(k)+var_sort(indxk)'*var_sort(indxk);
-                    gamma_sum(k)=gamma_sum(k)+ var_dif'*var_dif;
+                    gamma_sum(k)=gamma_sum(k)+ var_dif'*var_dif;  % we are squaring it 
                     % head point index
                     head_indx(i,k)=nk;
                     jindx=indx_sort(indxk)+i;
@@ -154,10 +159,11 @@ for j=1:ndir						% orientation loop
         indx1=find(head_indx(:,k) >= 1);
         hl=length(indx1);
         if hl > 0
-            npk=sum_nan(head_indx(:,k));
-            pdf=head_indx(indx1,k)/npk;
+            npk=sum_nan(head_indx(:,k)); % total number of points being considered for the kth lag
+            % head_indx(indx1,k) is all points within the kth lag for sample i
+            pdf=head_indx(indx1,k)/npk; % proportio
             mean_head(k)=sum_nan(vr(indx1).*pdf);
-            sigma_head(k)=sqrt(sum_nan(((vr(indx1)-mean_head(k)).^2).*pdf));
+            sigma_head(k)=sqrt(sum_nan(((vr(indx1)-mean_head(k)).^2).*pdf)); % standard deviation of the head
         end
         indx1=find(tail_indx(:,k) >= 1);
         hl=length(indx1);
@@ -178,9 +184,11 @@ for j=1:ndir						% orientation loop
         sigma_tail(indx)=sqrt(abs(var_std2));
         c0(indx)=sigma_tail(indx).*sigma_head(indx);
         % c0(indx)=0.5*(mean_tail(indx)+mean_head(indx));
-        gammah(indx)=0.5*gamma_sum(indx)./(cnt_nz.*mean(c0(indx))+eps);
+%         gammah(indx)=0.5*gamma_sum(indx)./(cnt_nz.*mean(c0(indx))+eps);
         %  c0=std(vr)^2;                    % normalization factor   % used in  original version and commented out on 11-06-2006
         gammah(indx)=0.5*gamma_sum(indx)./(cnt_nz.*c0(indx)+eps);  % used in the revised on the Nov. 06, 2006
+        % 0.5*gamma_sum(indx)/cnt_nz should give you the standard semi-variogram
+        % calc
     else
         gammah=nan.*ones(nlag-1,1);
     end

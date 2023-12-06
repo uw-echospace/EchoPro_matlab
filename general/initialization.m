@@ -70,12 +70,13 @@ para.proc.JH_fac=0.75;                          % percent of Jolly-Hampton trans
 
 para.bio.species_code_ID=22500;                 % RACE & NWFSC adult hake Species ID
 para.bio.hake_len_bin=2:2:80;                   % length sequence array: 1 - 80 cm 
-para.bio.hake_age_bin=1:20;                     % age sequence array: year - age  1-20
+% para.bio.hake_age_bin=1:20;                     % age sequence array: year - age  1-20
+para.bio.hake_age_bin=1:22;                     % age sequence array: year - age  1-22
 para.bio.age1_min_len=10;                       % minimum length (cm) of age1 hake
 
 %% acoustic data parameters
 para.acoust.file_sys=1;                         % 1 = EK60, 2 = EK500,  3 = EK6
-para.acoust.file_type=1;                        % 1 = processed, 2 = raw
+para.acoust.file_type= 1;                        % 1 = processed, 2 = raw
 
 %% process parameters
 para.acoust.freq0=[18 38 70 120 200];              % all available frequencies for Shimada
@@ -104,7 +105,10 @@ para.krig.loop=0;                            % kriging loop flag
 
 para.proc.bio_info_disp=0;                   % flag for whether or not to display biological file information for debugging
 
+para.all_selected_transects = [];
+
 load_proc_parameters(para.survey_year);      % popup FSV datafile names
+
 
 
 
