@@ -6,3 +6,7 @@ Matlab EchoPro code. This version corresponds to the code present in the zip fil
 - Much of the content in `m_map1.4` (the map plotting toolbox)  that stores the geographical data used in the maps. Only the m scripts in the base level folder are retained
 - Excel files under `input_files`
 - All subfolders under `other_programs` and all Excel and other data files at the root level. These are not expected to be used directly in EchoPro. We'll add back individual m-script files as needed
+
+## Updated version
+
+The branch [main-brandon-final](https://github.com/uw-echospace/EchoPro_matlab/tree/main-brandon-final) contains a version of the Matlab EchoPro code that includes bug fixes @b-reyes implemented. It is the final version used by Brandon to produce the test output files for the Python version of EchoPro.
